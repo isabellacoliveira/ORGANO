@@ -7,23 +7,23 @@ const Rodape = () => {
         <section className='redesSociais'>
             <ul>
                 <li>
-                    <a href="facebook.com" target="_blank">
+                    <a href="https://m.facebook.com/AluraCursosOnline/" target="_blank">
                         <img src="/imagens/fb.png" alt="" />
                     </a>
                 </li>
                 <li>
-                    <a href="twitter.com" target="_blank">
+                    <a href="https://twitter.com/AluraOnline?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank">
                         <img src="/imagens/tw.png" alt="" />
                     </a>
                 </li>
                 <li>
-                    <a href="instagram.com" target="_blank">
+                    <a href="https://www.instagram.com/aluraonline/" target="_blank">
                         <img src="/imagens/ig.png" alt="" />
                     </a>
                 </li>
             </ul>
         </section>
-        <section>
+        <section className='redesSociais'>
             <img src="/imagens/logo.png" alt=""/>
         </section>
         <section>

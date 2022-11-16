@@ -17,9 +17,12 @@ footer {
     margin-right: 0;
 }
 
-@media (min-width: 900px){
-    footer section {
-        display: block;
-    }
+.redesSociais {
+    margin-left: 10px;
+    margin-right: 20px;
 }
+
+
+
+
 
