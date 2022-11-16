@@ -2,35 +2,70 @@ import Botao from '../Botao';
 import CampoTexto from '../CampoTexto'
 import ListaSuspensa from '../ListaSuspensa';
 import './Formulario.css'
+import {useState} from 'react';
 
-const Formulario = () => {
-    // vamos criar uma lista de times 
-    const times = [
-        'Progamação', 
-        'Front-end', 
-        'Data-Science', 
-        'Devops', 
-        'UX e Design',  
-        'Mobile', 
-        'Inovação e Gestão'
-    ]
+const Formulario = (props) => {
+    
+
+    const [nome, setNome] = useState('')
+    const [cargo, setCargo] = useState('')
+    const [imagem, setImagem] = useState('')
+    const [time, setTime] = useState('')
 
     const aoSalvar = (evento) => {
-        // para evitar que a página seja recarregada quando apertamos o botão 
         evento.preventDefault()
-        console.log("Form foi submetido")
+        // console.log("Form foi submetido", nome, cargo, imagem, time)
+        // ao inves de fazer esse console log, fazemos: 
+        props.aoColaboradorCadastrado({
+            nome: nome,
+            cargo: cargo,
+            imagem: imagem,
+            time: time
+        })
+        // além disso, quero apagar o que foi digitado com o clique do botão 
+        // para limpar o formulário após cadastrar 
+        setNome('')
+        setCargo('')
+        setImagem('')
+        setTime('')
+        
+        
     }
+
     return (
         <section className="formulario">
-            {/* poderiamos fazer com o clique do botão , porém não vamos conseguir fazer a validação 
-                ex: se o campo foi ou não preenchido */}
-                {/* quando o form acontecer, esse método será executado  */}
             <form onSubmit={aoSalvar}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
-                <CampoTexto obrigatorio={true} label="nome" placeholder="Digite seu nome"/>
-                <CampoTexto obrigatorio={true} label="cargo" placeholder="Digite seu cargo"/>
-                <CampoTexto obrigatorio={true} label="imagem" placeholder="Digite o endereço da imagem"/>
-                <ListaSuspensa obrigatorio={true} label="Time" itens={times}/>
+                <CampoTexto 
+                    obrigatorio={true} 
+                    label="nome" 
+                    placeholder="Digite seu nome"
+                    valor={nome}
+                    // chamamos a função com o valor que recebemos de cada estado, por isso o estado recebe o valor 
+                    aoAlterado={valor => setNome(valor)}
+                />
+                <CampoTexto 
+                    obrigatorio={true} 
+                    label="cargo" 
+                    placeholder="Digite seu cargo"
+                    valor={cargo}
+                    aoAlterado={valor => setCargo(valor)}
+                />
+                <CampoTexto 
+                    obrigatorio={true}
+                    label="imagem" 
+                    placeholder="Digite o endereço da imagem"
+                    valor={imagem}
+                    aoAlterado={valor => setImagem(valor)}
+                />
+                <ListaSuspensa 
+                    obrigatorio={true} 
+                    label="Time" 
+                    // agora passamos isso para extrair e pegar somente os nomes dos times 
+                    itens={props.times}
+                    valor={time}
+                    aoAlterado={valor =>  setTime(valor)}
+                />
                 <Botao>
                     Criar Card
                 </Botao>
